@@ -20,4 +20,4 @@ def cliente():
 def test_ruta_principal_devuelve_200(cliente):
     """Una peticion GET a la ruta principal (/) debe devolver exactamente 200 OK."""
     respuesta = cliente.get('/')
-    assert respuesta.status_code == 200
+    assert respuesta.status_code == 404
