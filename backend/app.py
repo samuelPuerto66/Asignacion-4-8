@@ -6,10 +6,11 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 def conectar_db():
+    password = "SuperClave123!"
     return pymysql.connect(
         host=os.environ.get('DB_HOST', 'servidor-bd-ejemplo'),
         user=os.environ.get('DB_USER', 'root'),
-        password=os.environ.get('DB_PASSWORD', ''),
+        password=password,
         database=os.environ.get('DB_NAME', 'taller_db'),
         connect_timeout=5,
     )
