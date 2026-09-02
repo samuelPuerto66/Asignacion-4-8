@@ -13,6 +13,9 @@ services:
       - "5000:5000"
     depends_on:
       - servidor-bd-ejemplo
+    networks:
+      - default
+      - proxy-net
 
   servidor-bd-ejemplo:
     image: mysql:8.0
@@ -28,3 +31,7 @@ services:
 
 volumes:
   mysql_data:
+
+networks:
+  proxy-net:
+    external: true
