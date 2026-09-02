@@ -1,0 +1,30 @@
+services:
+  backend:
+    image: ${DOCKERHUB_USER}/mi-api:latest
+    container_name: api-flask
+    restart: unless-stopped
+    environment:
+      - HOST=0.0.0.0
+      - DB_HOST=servidor-bd-ejemplo
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=taller_db
+    ports:
+      - "5000:5000"
+    depends_on:
+      - servidor-bd-ejemplo
+
+  servidor-bd-ejemplo:
+    image: mysql:8.0
+    container_name: servidor-bd-ejemplo
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=taller_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
